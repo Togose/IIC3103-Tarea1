@@ -1,8 +1,17 @@
 class EntriesController < ApplicationController
+  before_action :authenticate_user!
   include EntriesHelper
 
   def index
-    @entries = Entry.all
+    @entries = Entry.order(created_at: :desc).limit(10)
+    @entries.each do |entry|
+      if entry.body.length >= 500
+        #find last space
+        last_space = entry.body[0..500].rindex(' ') - 1
+        entry.body = entry.body[0..last_space] + '...'
+      end
+
+  end
   end
 
   def show
@@ -36,7 +45,7 @@ class EntriesController < ApplicationController
     @entry.update(entry_params)
 
     redirect_to entries_path(@entry)
-    flash.notice = "Noticia '#{@entry.titulo}' fue actualizada con exito!"
+    flash.notice = "Noticia '#{@entry.title}' fue actualizada con exito!"
   end
 
 end
