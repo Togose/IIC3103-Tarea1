@@ -26,8 +26,11 @@ class EntriesController < ApplicationController
 
   def create
     @entry = Entry.new(entry_params)
-    @entry.save
-    redirect_to entry_path(@entry)
+    if @entry.save
+      redirect_to entry_path(@entry)
+    else
+      render 'new'
+    end
   end
 
   def destroy
@@ -42,10 +45,12 @@ class EntriesController < ApplicationController
 
   def update
     @entry = Entry.find(params[:id])
-    @entry.update(entry_params)
-
-    redirect_to entries_path(@entry)
-    flash.notice = "Noticia '#{@entry.title}' fue actualizada con exito!"
+    if @entry.update(entry_params)
+      redirect_to entries_path(@entry)
+      flash.notice = "Noticia '#{@entry.title}' fue actualizada con exito!"
+    else
+      render 'edit'
+    end
   end
 
 end
