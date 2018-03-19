@@ -2201,3 +2201,20 @@ FOREIGN KEY ("entry_id")
   [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
   [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_advisory_unlock(8115692404137957555)[0m
   [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/entries" for 127.0.0.1 at 2018-03-19 12:27:53 -0300
+  [1m[35m (1.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by EntriesController#index as HTML
+  Rendering entries/index.html.erb within layouts/application
+  [1m[36mEntry Load (5.5ms)[0m  [1m[34mSELECT "entries".* FROM "entries"[0m
+  Rendered entries/index.html.erb within layouts/application (10.4ms)
+Completed 200 OK in 316ms (Views: 292.8ms | ActiveRecord: 7.3ms)
+
+
+Started GET "/entries/new" for 127.0.0.1 at 2018-03-19 12:27:55 -0300
+Processing by EntriesController#new as HTML
+  Rendering entries/new.html.erb within layouts/application
+  Rendered entries/_form.html.erb (17.6ms)
+  Rendered entries/new.html.erb within layouts/application (20.7ms)
+Completed 200 OK in 106ms (Views: 44.7ms | ActiveRecord: 17.3ms)
+
+
