@@ -1,0 +1,11 @@
+<h1><%= @entry.title %></h1>
+<p><%=@entry.subhead %></p>
+<p><%= @entry.body %></p>
+
+<p><%= link_to "Editar", edit_entry_path(@entry) %></p>
+<p><%= link_to "Borrar Noticia", entry_path(@entry), method: :delete,
+data: {confirm: "¿Seguro que quieres borrar esta Noticia?"}  %></p>
+<p><%= link_to "Volver al listado de Noticias", entries_path%></p>
+<%= render partial: 'comments/form' %>
+<p> <h3>Comentarios (<%= @entry.comments.size %>)</h3> </p>
+<%= render partial: 'entries/comment', collection: @entry.comments.reverse %>
